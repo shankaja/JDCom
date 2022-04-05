@@ -1,0 +1,16 @@
+
+Computer science degree, or equivalent technical or engineering related qualification with solid fundamentals in algorithms and data
+
+structures.
+
+Proficiency in Golang it’s preferred but deep experience with any strongly typed language is sufficient.
+
+Experience with CI/CD setup, containers (Docker, etc) and test automation.
+
+Understanding of system design, architecture and distributed systems (Queueing systems, Eventual Consistency and ACID).
+
+Micro-services experience and knowledge is highly desirable
+
+We promote “infrastructure as code“ in the team and terraform or other infrastructure tools are our best friends; Knowledge in DevOps is
+
+highly desirable.
