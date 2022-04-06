@@ -2,7 +2,10 @@ module example/interview
 
 go 1.17
 
-require gopkg.in/yaml.v2 v2.4.0
+require (
+	github.com/dslipak/pdf v0.0.1
+	gopkg.in/yaml.v2 v2.4.0
+)
 
 require (
 	github.com/fsnotify/fsnotify v1.5.1 // indirect
