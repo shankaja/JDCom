@@ -12,11 +12,11 @@ import (
 type Router struct {
 	healthController *controller.HealthController
 	resumeController *controller.ResumeController
-	config           *config.Config
+	c                *config.Config
 }
 
 func NewRouter(hc *controller.HealthController, rc *controller.ResumeController, c *config.Config) *Router {
-	return &Router{healthController: hc, config: c, resumeController: rc}
+	return &Router{healthController: hc, c: c, resumeController: rc}
 }
 
 func (t *Router) InitializeRouter() {

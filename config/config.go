@@ -7,8 +7,14 @@ import (
 	"gopkg.in/yaml.v2"
 )
 
+type Swagger struct {
+	BaseUrl string `yaml:"base_url"`
+	Path    string `yaml:"path"`
+}
+
 type Config struct {
-	Files Files `yaml:"files"`
+	Files   Files `yaml:"files"`
+	Swagger Files `yaml:"swagger"`
 }
 
 type Files struct {

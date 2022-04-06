@@ -1,3 +1,6 @@
 files:
   job_description: jd.txt
   resume: C:\Users\shankaja\Downloads\resume.pdf
+swagger:
+  base_url: http://localhost:8000
+  path: swagger/doc.json
