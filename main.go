@@ -1,16 +1,14 @@
 package main
 
 import (
-	"example/interview/config"
-	"example/interview/controller"
 	"example/interview/route"
-	"fmt"
+	"example/interview/servicecontainer"
 )
 
 func main() {
-	cfg := config.LoadAll("config/config.yml")
-	fmt.Print(*cfg)
-	healthController := controller.NewHealthController(cfg)
-	resumeController := controller.NewResumeController(cfg)
-	route.NewRouter(healthController, resumeController, cfg).InitializeRouter()
+
+	dc := &servicecontainer.DependancyContainer{}
+	cfg := dc.Init()
+
+	route.NewRouter(dc.HealthController, dc.ResumeController, cfg).InitializeRouter()
 }

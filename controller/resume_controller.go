@@ -2,47 +2,36 @@ package controller
 
 import (
 	"example/interview/config"
-	"example/interview/util"
-	"fmt"
-	"io/ioutil"
+	"example/interview/service"
+	"example/interview/wrap"
 	"log"
 	"net/http"
 )
 
 type ResumeController struct {
-	c *config.Config
+	c             *config.Config
+	resumeService *service.ResumeService
 }
 
-func NewResumeController(c *config.Config) *ResumeController {
-	return &ResumeController{c: c}
+func NewResumeController(c *config.Config, rs *service.ResumeService) *ResumeController {
+	return &ResumeController{c: c, resumeService: rs}
 }
 
 func (c *ResumeController) UploadResume(w http.ResponseWriter, r *http.Request) {
 	r.ParseMultipartForm(5 << 1)
-	file, handler, err := r.FormFile("myFile")
+	file, handler, err := r.FormFile("resume")
 	if err != nil {
-		fmt.Println("Error Retrieving the File")
-		fmt.Println(err)
+		log.Fatal(err)
 		return
 	}
 	defer file.Close()
-	log.Printf("Uploaded File: %+v\n", handler.Filename)
 
-	tempFile, err := ioutil.TempFile("temp", "upload-*.pdf")
+	text, err := c.resumeService.Upload(file, handler)
 	if err != nil {
-		fmt.Println(err)
-	}
-	defer tempFile.Close()
-	fileBytes, err := ioutil.ReadAll(file)
-	if err != nil {
-		fmt.Println(err)
-	}
-	tempFile.Write(fileBytes)
-	text, error := util.ReadPdf(fmt.Sprintf("%+v", tempFile.Name()))
-	if error != nil {
-		log.Print(err)
+		log.Fatal(err)
 		return
 	}
 
-	fmt.Fprintf(w, "Successfully Uploaded File  %+s \n", text)
+	wrap.WrapFileResponse(w, text)
+	return
 }

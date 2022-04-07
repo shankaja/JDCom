@@ -1,6 +1,6 @@
-#Job description comparison tool
+Job description comparison tool
 
-##How to run
+How to run
 
 ```
 docker run -d -p 8000:8000 jd-tool
