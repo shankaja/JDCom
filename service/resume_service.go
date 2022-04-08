@@ -39,3 +39,15 @@ func (s *ResumeService) Upload(file multipart.File, handler *multipart.FileHeade
 	}
 	return text, nil
 }
+
+//Reads the resume.pdf text and job description
+//Returns the similarity percentage of those two
+func (s *ResumeService) Compare(file multipart.File, handler *multipart.FileHeader, jd string) (string, error) {
+	text, err := s.Upload(file, handler)
+	if err != nil {
+		return "", err
+	}
+	//TODO integrate the NLP engine
+
+	return text, nil
+}

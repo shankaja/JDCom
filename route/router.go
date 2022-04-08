@@ -23,5 +23,6 @@ func (t *Router) InitializeRouter() {
 	r := mux.NewRouter()
 	r.HandleFunc("/health", t.healthController.GetHealth)
 	r.HandleFunc("/upload", t.resumeController.UploadResume)
+	r.HandleFunc("/compare", t.resumeController.UploadResume)
 	log.Fatal(http.ListenAndServe(":8000", r))
 }

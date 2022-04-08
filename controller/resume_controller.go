@@ -35,3 +35,22 @@ func (c *ResumeController) UploadResume(w http.ResponseWriter, r *http.Request) 
 	wrap.WrapFileResponse(w, text)
 	return
 }
+
+func (c *ResumeController) CompareResume(w http.ResponseWriter, r *http.Request) {
+	r.ParseMultipartForm(5 << 1)
+	file, handler, err := r.FormFile("resume")
+	if err != nil {
+		log.Fatal(err)
+		return
+	}
+	defer file.Close()
+
+	text, err := c.resumeService.Upload(file, handler)
+	if err != nil {
+		log.Fatal(err)
+		return
+	}
+
+	wrap.WrapFileResponse(w, text)
+	return
+}
